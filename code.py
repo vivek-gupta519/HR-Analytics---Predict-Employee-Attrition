@@ -1,22 +1,22 @@
-1) Project plan & milestones
+*** 1) Project plan & milestones ***
 
-Data ingestion & cleaning (missing values, datatypes, encode categorical, feature engineering).
+#Data ingestion & cleaning (missing values, datatypes, encode categorical, feature engineering).
 
-EDA (overview, department-wise attrition, salary bands, promotions, tenure).
+#EDA (overview, department-wise attrition, salary bands, promotions, tenure).
 
-Baseline models: Logistic Regression + Decision Tree.
+#Baseline models: Logistic Regression + Decision Tree.
 
-Improve: preprocessing pipeline, class imbalance handling, hyperparameter tuning.
+#Improve: preprocessing pipeline, class imbalance handling, hyperparameter tuning.
 
-Explainability: SHAP values (global + local).
+#Explainability: SHAP values (global + local).
 
-Visualizations + Power BI dashboard.
+#Visualizations + Power BI dashboard.
 
-Deliverables: Power BI .pbix, Model accuracy report + confusion matrix images, PDF with attrition prevention suggestions.
+#Deliverables: Power BI .pbix, Model accuracy report + confusion matrix images, PDF with attrition prevention suggestions.
 
-2) EDA & preprocessing (Python)
+*** 2) EDA & preprocessing (Python) ***
 
-Copy this into a notebook. Replace hr.csv with your filename.
+#Copy this into a notebook. Replace hr.csv with your filename.
 
 # Standard imports
 import pandas as pd
@@ -59,19 +59,19 @@ plt.title('Attrition Rate by Salary Band')
 plt.tight_layout()
 
 
-EDA checklist to run:
+#EDA checklist to run:
 
-Attrition % overall and by Department/JobRole/SalaryBand/Gender/Age group.
+#Attrition % overall and by Department/JobRole/SalaryBand/Gender/Age group.
 
-Distribution of tenure, monthly income, performance rating, number of promotions.
+#Distribution of tenure, monthly income, performance rating, number of promotions.
 
-Correlations (numeric features).
+#Correlations (numeric features).
 
-Crosstabs: Promotions vs Attrition, Recent Hires vs Attrition (YearsAtCompany<2), Overtime vs Attrition.
+#Crosstabs: Promotions vs Attrition, Recent Hires vs Attrition (YearsAtCompany<2), Overtime vs Attrition.
 
-3) Modeling pipeline (preprocessing + training + evaluation)
+*** 3) Modeling pipeline (preprocessing + training + evaluation) ***
 
-This pipeline handles categorical encoding, scaling, and offers both logistic and tree models. It also shows how to produce a confusion matrix and classification report.
+#This pipeline handles categorical encoding, scaling, and offers both logistic and tree models. It also shows how to produce a confusion matrix and classification report.
 
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.pipeline import Pipeline
@@ -147,7 +147,7 @@ y_pred_dt = best.predict(X_test)
 print('Accuracy (DT):', accuracy_score(y_test, y_pred_dt))
 print(classification_report(y_test, y_pred_dt))
 
-4) SHAP explainability
+** 4) SHAP explainability **
 
 Use TreeExplainer for tree model, KernelExplainer for logistic (or TreeExplainer on a tree-based model). Example for decision tree:
 
@@ -171,30 +171,30 @@ i = 0
 shap.force_plot(explainer.expected_value[1], shap_values[1][i,:], matplotlib=True)
 
 
-Notes:
+## Notes:
 
-With OneHotEncoder you may want to capture feature names: ohe = preprocessor.named_transformers_['cat']; feature_names = num_cols + list(ohe.get_feature_names_out(cat_cols)) — then pass a DataFrame to SHAP with those column names.
+##With OneHotEncoder you may want to capture feature names: ohe = preprocessor.named_transformers_['cat']; feature_names = num_cols + list(ohe.get_feature_names_out(cat_cols)) — then pass a DataFrame to SHAP with those column names.
 
-For LogisticRegression, KernelExplainer can be slow; consider using a tree-based model (RandomForest/LightGBM) for faster TreeExplainer and often better performance.
+##For LogisticRegression, KernelExplainer can be slow; consider using a tree-based model (RandomForest/LightGBM) for faster TreeExplainer and often better performance.
 
-5) Model accuracy report + confusion matrix (deliverable)
+** 5) Model accuracy report + confusion matrix (deliverable) **
 
-Create a small report (markdown or PDF) that includes:
+#Create a small report (markdown or PDF) that includes:
 
-Dataset used (rows, columns, date).
+#Dataset used (rows, columns, date).
 
-Preprocessing steps.
+#Preprocessing steps.
 
-Model(s) tried and hyperparameters.
+#Model(s) tried and hyperparameters.
 
-Metrics: Accuracy, Precision, Recall, F1, ROC-AUC.
+#Metrics: Accuracy, Precision, Recall, F1, ROC-AUC.
 
-Confusion matrix chart (as PNG).
+##Confusion matrix chart (as PNG).
 
-Feature importance (SHAP summary plots).
-Use sklearn.metrics.roc_auc_score and sklearn.metrics.plot_roc_curve for ROC.
+#Feature importance (SHAP summary plots).
+#Use sklearn.metrics.roc_auc_score and sklearn.metrics.plot_roc_curve for ROC.
 
-6) Power BI dashboard design (suggested layout & measures)
+** 6) Power BI dashboard design (suggested layout & measures) **
 
 Dashboard pages:
 

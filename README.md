@@ -121,7 +121,3 @@ pip install -r requirements.txt
 
 ---
 
-## 👨‍💻 Author  
-**[Your Name]**  
-- Data Scientist | HR Analytics Enthusiast  
-- 📧 your.email@example.com  
